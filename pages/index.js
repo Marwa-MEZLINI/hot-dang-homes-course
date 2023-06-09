@@ -1,13 +1,17 @@
 import { gql } from "@apollo/client";
 import client from "client";
 import { BlockRenderer } from "components/BlockRenderer/BlockRenderer";
+import { MainMenu } from "components/MainMenu";
 import { cleanAndTransformBlocks } from "utils/cleanAndTransformBlocks";
 import { mapMainMenuItems } from "utils/mapMainMenuItems";
 
 export default function Home(props) {
   console.log("PROPS: ",props);
   return (
-    <div><BlockRenderer blocks={props.blocks}/></div>
+    <div>
+      <MainMenu items={props.mainMenuItems} />
+      <BlockRenderer blocks={props.blocks}/>
+    </div>
   );
 }
 
