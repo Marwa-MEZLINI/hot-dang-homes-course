@@ -24,8 +24,8 @@ export const BlockRenderer = ({blocks}) => {
             case 'core/paragraph': {
                 return <Paragraph 
                     key={block.id}
-                    content={block.attributes.content}
                     textAlign={block.attributes.align}
+                    content={block.attributes.content}
                     textColor={
                         theme[block.attributes.textColor] || 
                         block.attributes.style?.color?.text
@@ -68,9 +68,21 @@ export const BlockRenderer = ({blocks}) => {
                     </Column>
                 );
             }
+            case 'core/group':
+            case 'core/block': {
+                return (
+                    <BlockRenderer key={block.id} blocks={block.innerBlocks} />
+                );
+            }
             case 'core/image': {
                 return (
-                    <Image key={block.id} src={block.attributes.url} width={block.attributes.originalWidth} alt={block.attributes.alt || ""} height={block.attributes.originalHeight} />
+                    <Image 
+                        key={block.id}
+                        src={block.attributes.url}
+                        width={block.attributes.originalWidth}
+                        alt={block.attributes.alt || ""}
+                        height={block.attributes.originalHeight}
+                    />
                 );
             }
             default: {
