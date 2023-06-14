@@ -1,8 +1,10 @@
 import { CallToActionButton } from "components/CallToActionButton";
+import { Column } from "components/Column";
 import { Columns } from "components/Columns";
 import { Cover } from "components/Cover"
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import Image from "next/image";
 import { theme } from "theme";
 
 export const BlockRenderer = ({blocks}) => {
@@ -57,6 +59,18 @@ export const BlockRenderer = ({blocks}) => {
                     >
                         <BlockRenderer blocks={block.innerBlocks}/>
                     </Columns>
+                );
+            }
+            case 'core/column': {
+                return (
+                    <Column key={block.id} width={block.attributes.width}>
+                        <BlockRenderer blocks={block.innerBlocks}/>
+                    </Column>
+                );
+            }
+            case 'core/image': {
+                return (
+                    <Image key={block.id} src={block.attributes.url} width={block.attributes.originalWidth} alt={block.attributes.alt || ""} height={block.attributes.originalHeight} />
                 );
             }
             default: {
