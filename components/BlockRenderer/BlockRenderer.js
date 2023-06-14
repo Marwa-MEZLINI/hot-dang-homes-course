@@ -41,7 +41,7 @@ export const BlockRenderer = ({blocks}) => {
                 />
             }
             case 'core/cover':{
-                console.log("BLOCK: ", block);
+                console.log("COVER BLOCK: ", block);
                 return (
                     <Cover 
                         key={block.id} 
