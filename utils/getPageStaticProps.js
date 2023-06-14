@@ -53,7 +53,7 @@ export const getPageStaticProps = async (context) => {
         uri,
     },
     })
-    const blocks = cleanAndTransformBlocks(data.nodeByUri.blocksJSON)
+    const blocks = await cleanAndTransformBlocks(data.nodeByUri.blocksJSON)
     return {
       props: {
         mainMenuItems : mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
