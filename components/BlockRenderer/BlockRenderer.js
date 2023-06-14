@@ -1,4 +1,5 @@
 import { CallToActionButton } from "components/CallToActionButton";
+import { Columns } from "components/Columns";
 import { Cover } from "components/Cover"
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
@@ -46,6 +47,16 @@ export const BlockRenderer = ({blocks}) => {
                     >
                         <BlockRenderer blocks={block.innerBlocks} />
                     </Cover>
+                );
+            }
+            case 'core/columns': {
+                return (
+                    <Columns
+                        key={block.id}
+                        isStackedOnMobile={block.attributes.isStackedOnMobile}
+                    >
+                        <BlockRenderer blocks={block.innerBlocks}/>
+                    </Columns>
                 );
             }
             default: {
