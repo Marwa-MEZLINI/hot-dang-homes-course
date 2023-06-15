@@ -6,7 +6,12 @@ const handler = async (req, res) => {
         const {data} = await client.query({
             query: gql`
                 query AllPropertiesQuery {
-                    properties {
+                    properties(where: {offsetPagination: {offset: 0, size: 3}}) {
+                        pageInfo {
+                            offsetPagination {
+                              total
+                            }
+                        }
                         nodes {
                             databaseId
                             title
@@ -29,11 +34,13 @@ const handler = async (req, res) => {
                 }
             `
         });
+        console.log("SERVER SIDE: ", data.properties.nodes);
         return res.status(200).json({
+            total: data.properties.pageInfo.offsetPagination.total,
             properties: data.properties.nodes,
         })
     } catch (e) {
-        console.log(e);
+        console.log("Error: ",e);
     }
 };
 
