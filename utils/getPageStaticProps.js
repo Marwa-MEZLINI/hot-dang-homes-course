@@ -71,6 +71,7 @@ export const getPageStaticProps = async (context) => {
     const blocks = await cleanAndTransformBlocks(data.nodeByUri.blocksJSON)
     return {
       props: {
+        title: data.nodeByUri.title,
         featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
         mainMenuItems : mapMainMenuItems(
           data.acfOptionsMainMenu.mainMenu.menuItems

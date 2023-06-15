@@ -4,6 +4,7 @@ import { Columns } from "components/Columns";
 import { Cover } from "components/Cover"
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import { PostTitle } from "components/PostTitle";
 import Image from "next/image";
 import { theme } from "theme";
 
@@ -36,6 +37,13 @@ export const BlockRenderer = ({blocks}) => {
                 return <Heading 
                     key={block.id} 
                     content={block.attributes.content} 
+                    level={block.attributes.level} 
+                    textAlign={block.attributes.textAlign}
+                />
+            }
+            case 'core/post-title': {
+                return <PostTitle 
+                    key={block.id} 
                     level={block.attributes.level} 
                     textAlign={block.attributes.textAlign}
                 />
