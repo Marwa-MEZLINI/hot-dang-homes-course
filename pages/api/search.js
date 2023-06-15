@@ -3,10 +3,12 @@ const { default: client } = require("client");
 
 const handler = async (req, res) => {
     try {
+        const filters = JSON.parse(req.body);
+
         const {data} = await client.query({
             query: gql`
                 query AllPropertiesQuery {
-                    properties(where: {offsetPagination: {offset: 0, size: 3}}) {
+                    properties(where: {offsetPagination: {offset: ${((filters.page || 1) - 1)*3}, size: 3}}) {
                         pageInfo {
                             offsetPagination {
                               total
