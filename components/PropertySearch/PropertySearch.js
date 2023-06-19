@@ -35,9 +35,15 @@ export const PropertySearch = () => {
     useEffect(() => {
         search();
     }, []);
+
+    const handleSearch = ({petFriendly, hasParking, minPrice, maxPrice}) => {
+        // update our brouser url
+        // trigger search
+    }
+
     return (
         <div>
-            <Filters />
+            <Filters onSearch={handleSearch}/>
             <Results properties={properties} />
             <Pagination onPageClick={handlePageClick} totalPages={Math.ceil(totalResults/pageSize)} />
         </div>
